@@ -13,6 +13,14 @@ import java.util.function.Supplier;
 
 public class WHumanoidRepository implements Repository<UUID, Humanoid> {
 
+    private static WHumanoidRepository wHumanoidRepository;
+
+    public static WHumanoidRepository getInstance() {
+        if (wHumanoidRepository == null) wHumanoidRepository = new WHumanoidRepository();
+
+        return wHumanoidRepository;
+    }
+
     private final LinkExperience linkExperience = LinkExperience.getInstance();
     private final Map<UUID, Humanoid> humanoidMap = new WeakHashMap<>();
 

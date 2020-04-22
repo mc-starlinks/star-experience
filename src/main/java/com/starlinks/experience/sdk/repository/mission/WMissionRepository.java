@@ -17,6 +17,14 @@ import java.util.function.Supplier;
 
 public class WMissionRepository implements Repository<String, Mission> {
 
+    private static WMissionRepository wMissionRepository;
+
+    public static WMissionRepository getInstance() {
+        if (wMissionRepository == null) wMissionRepository = new WMissionRepository();
+
+        return wMissionRepository;
+    }
+
     private final LinkExperience linkExperience = LinkExperience.getInstance();
     private final Map<String, Mission> missionMap = new WeakHashMap<>();
 

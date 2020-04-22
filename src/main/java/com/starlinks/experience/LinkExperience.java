@@ -3,7 +3,10 @@ package com.starlinks.experience;
 import com.starlinks.core.api.StarAPI;
 import com.starlinks.core.api.database.StarDatabaseProvider;
 import com.starlinks.core.sdk.database.credentials.UniversalCredentials;
+import com.starlinks.experience.api.ExperienceAPI;
+import com.starlinks.experience.sdk.WExperienceAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LinkExperience extends JavaPlugin {
@@ -21,6 +24,8 @@ public class LinkExperience extends JavaPlugin {
 
         starDatabaseProvider = starAPI.getDatabaseFactory().newMysqlProvider()
                 .loginWithCredentials(new UniversalCredentials("localhost:3304", "starlinks", "root", ""));
+
+        Bukkit.getServicesManager().register(ExperienceAPI.class, WExperienceAPI.getInstance(), this, ServicePriority.High);
     }
 
     public StarDatabaseProvider getDatabaseProvider() {
